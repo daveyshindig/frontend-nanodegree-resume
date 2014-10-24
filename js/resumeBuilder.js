@@ -55,16 +55,19 @@ var work = {
 	]
 };
 
+function displayWork() {
+	for (job in work.jobs) {
+		$("#workExperience").append(HTMLworkStart);
+		var workEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+		var workTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+		var workDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+		var workLoc = HTMLworkLocation.replace("%data%", work.jobs[job].workLocation);
+		var workDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+		$(".work-entry:last").append(workEmployer + workTitle + workDates + workLoc + workDescription);
+	}
+};
 
-for (job in work.jobs) {
-	$("#workExperience").append(HTMLworkStart);
-	var workEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-	var workTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-	var workDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-	var workLoc = HTMLworkLocation.replace("%data%", work.jobs[job].workLocation);
-	var workDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-	$(".work-entry:last").append(workEmployer + workTitle + workDates + workLoc + workDescription);
-}
+displayWork();
 
 var projects = {
 	"projects": [
@@ -74,8 +77,7 @@ var projects = {
 			"description": "The University of Hawaii at Manoa was tasked with maintaining a data science repository for use by analysts of the Maui Smart Grid energy sustainability project through the Hawaii Natural Energy Institute. This software provides the data acquisition, processing and operational resources necessary to accomplish this task.",
 			"images": [
 				"img/msg1.jpg",
-				"img/msg2.jpg",
-				"img/msg3.jpg"
+				"img/msg2.jpg"
 			]
 		},
 		{
@@ -100,6 +102,24 @@ var projects = {
 		}		
 	]
 };
+
+projects.display = function() {
+	for (project in projects.projects) {
+		temp = "";
+		$("#projects").append(HTMLprojectStart);
+		var projectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+		var projectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+		var projectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+		var imageHTML = "";
+		for (img in projects.projects[project].images) {
+			imageHTML += HTMLprojectImage.replace("%data%", projects.projects[project].images[img]);
+		}
+		projectsHTML = projectTitle + projectDates + projectDescription + imageHTML;
+		$(".project-entry:last").append(projectsHTML);
+	}
+}
+
+projects.display();
 
 var education = {
 	"schools": [
@@ -148,5 +168,14 @@ if (bio.skills.length > 0) {
 	$("#skills").append(formattedSkill);
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
 	$("#skills").append(formattedSkill);
-}
+};
 
+function inName(name) {
+	nameArray = name.split(" ");
+	firstName = nameArray[0][0].toUpperCase() + nameArray[0].slice(1).toLowerCase();
+	lastName = nameArray[1].toUpperCase();
+	return firstName + " " + lastName;
+};
+
+$("#mapDiv").append(googleMap);
+$(".map").append(map);
