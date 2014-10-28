@@ -3,18 +3,37 @@ var bio = {
 	"role": "Software &amp; Web Engineer",
 	"contacts": { "email": "davey@ktuh.org",
 				  "github": "@daveyshindig",
+			  	  "location": "Honolulu, Hawaii",
 				  "twitter": "@ktuh",
-				  "mobile": "808.391.8983"
+				  "mobile": "808.391.8983",
+				  "blog": "http://daveywilkie.blogspot.com"
 	},
-	"photo_url": "img/davey.jpg",
-	"welcomeMessage": "Aloha, my name is David Wilkie. Friends call me Davey, or Dave. I am pursuing an undergraduate degree in the Information & Computer Science program at the University of Hawaii at Manoa. This semester, I am studying serious game design and data networks. With my free time, I volunteer as webmaster and DJ at KTUH FM, and make music with my friends. I will take a BA degree at the end of 2013 and am on the job hunt. The goal is to find gainful employment as a software or web developer, while continuing to study math and computer science as a graduate student. You can learn more about me through my portfolio.",
+	"photo_url": "img/davey-1.jpg",
+	"welcomeMessage": "Aloha, my name is David Wilkie. Friends call me Davey, or Dave. I am a new graduate from the Information & Computer Sciences program at the University of Hawaii at Manoa. This month, I am finishing work at the Hawaii Natural Energy Institute, where I've been employed for the last year on a grant-funded study of the smart energy grid. Currently, I am in the online school Udacity's front-end web development nanodegree program, and I am now on the job hunt. My hope for the near future is to find gainful employment as a software or web developer while continuing to formally study more math and computer science.",
 	"skills": [
 		"yoga",
 		"Japanese",
 		"French",
 		"computer science",
 		"cooking"
-	]
+	],
+	displayBio: function displayBio() {
+		var formattedName = HTMLheaderName.replace("%data%", bio.name);
+		var formattedRole = HTMLheaderRole.replace("%data%", bio.role);
+		var formattedEmail = HTMLmobile.replace("%data%", bio.contacts.email);
+		var formattedGithub = HTMLgithub.replace("%data%", bio.contacts.github);
+		var formattedLocation = HTMLlocation.replace("%data%", bio.contacts.location);
+		var formattedTwitter = HTMLtwitter.replace("%data%", bio.contacts.twitter);
+		var formattedMobile = HTMLmobile.replace("%data%", bio.contacts.mobile);
+		var formattedBlog = HTMLblog.replace("%data%", bio.contacts.blog);
+		var formattedContacts = formattedMobile + formattedEmail + formattedBlog + formattedGithub
+							  +  formattedTwitter + formattedLocation;
+		var formattedBioPic = HTMLbioPic.replace("%data%", bio.photo_url);
+		var formattedWelcome = HTMLWelcomeMsg.replace("%data%", bio.welcomeMessage);
+		$("#topContacts").append(formattedContacts);
+		$("#footerContacts").append(formattedContacts);
+		$("#header").append(formattedName + formattedRole + formattedBioPic + formattedWelcome);
+	}
 };
 
 var work = {
@@ -22,7 +41,7 @@ var work = {
 		{
 			"employer": "Hawaii Natural Energy Institute",
 			"title": "Project IT Assistant",
-			"workLocation": "Honolulu, Hawai`i",
+			"location": "Honolulu, Hawaii",
 			"dates": "November 2013 - October 2014",
 			"description":  [
 				"Converts data to knowledge by writing Python and PostgreSQL scripts to analyze & audit energy use", 
@@ -33,7 +52,7 @@ var work = {
 		{
 			"employer": "KTUH FM",
 			"title": "Webmaster",
-			"workLocation": "Honolulu, Hawai`i",
+			"location": "Honolulu, Hawaii",
 			"dates": "April 2012 - Present",
 			"description": [
 				"Deployed custom web applications on Google App Engine and Heroku",
@@ -44,30 +63,37 @@ var work = {
 		{
 			"employer": "The United States Peace Corps",
 			"title": "Volunteer",
-			"workLocation": "Cambodia",
+			"location": "Cambodia",
 			"dates": "2008 - 2009",
 			"description": [
 				"Educated secondary-school students in English, trained local teachers in current pedagogic practices",
 				"Designed and managed projects in community and youth development",
 				"Promoted world peace and international friendship through the sharing of culture and values"
 			]
+		},
+		{
+			"employer": "Nanyou Chuugaku Middle School",
+			"title": "English Teacher",
+			"location": "Nagoya, Japan",
+			"dates": "2009 - 2010",
+			"description": [
+				"Educated middle-schoolers in English and studied the Japanese language"
+			]
 		}
-	]
-};
 
-function displayWork() {
-	for (job in work.jobs) {
-		$("#workExperience").append(HTMLworkStart);
-		var workEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
-		var workTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
-		var workDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
-		var workLoc = HTMLworkLocation.replace("%data%", work.jobs[job].workLocation);
-		var workDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
-		$(".work-entry:last").append(workEmployer + workTitle + workDates + workLoc + workDescription);
+	],
+	displayWork: function displayWork() {
+		for (job in work.jobs) {
+			$("#workExperience").append(HTMLworkStart);
+			var workEmployer = HTMLworkEmployer.replace("%data%", work.jobs[job].employer);
+			var workTitle = HTMLworkTitle.replace("%data%", work.jobs[job].title);
+			var workDates = HTMLworkDates.replace("%data%", work.jobs[job].dates);
+			var workLoc = HTMLworkLocation.replace("%data%", work.jobs[job].location);
+			var workDescription = HTMLworkDescription.replace("%data%", work.jobs[job].description);
+			$(".work-entry:last").append(workEmployer + workTitle + workDates + workLoc + workDescription);
+		}
 	}
 };
-
-displayWork();
 
 var projects = {
 	"projects": [
@@ -82,7 +108,7 @@ var projects = {
 		},
 		{
 			"title": "KTUH Mobile App for iOS",
-			"dates": "January 2012 - May 2014",
+			"dates": "January 2012 - May 2012",
 			"description": "The KTUH Mobile App for iOS was a project for the University of Hawaii's student-run radio station, KTUH FM, in collaboration with classmates Marifel Barbasa and Chris Wilson. It affords the user the ability to stream the radio's live feed thru any device running iOS 5. The app gives access to the station's programming in places where the FM signals do not reach.",
 			"images": [
 				"img/ios1.jpg",
@@ -100,64 +126,125 @@ var projects = {
 				"img/8083.jpg"
 			]
 		}		
-	]
-};
-
-projects.display = function() {
-	for (project in projects.projects) {
-		temp = "";
-		$("#projects").append(HTMLprojectStart);
-		var projectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
-		var projectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
-		var projectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
-		var imageHTML = "";
-		for (img in projects.projects[project].images) {
-			imageHTML += HTMLprojectImage.replace("%data%", projects.projects[project].images[img]);
+	],
+	displayProjects: function displayProjects() {
+		for (project in projects.projects) {
+			temp = "";
+			$("#projects").append(HTMLprojectStart);
+			var projectTitle = HTMLprojectTitle.replace("%data%", projects.projects[project].title);
+			var projectDates = HTMLprojectDates.replace("%data%", projects.projects[project].dates);
+			var projectDescription = HTMLprojectDescription.replace("%data%", projects.projects[project].description);
+			var imageHTML = "";
+			for (img in projects.projects[project].images) {
+				imageHTML += HTMLprojectImage.replace("%data%", projects.projects[project].images[img]);
+			}
+			projectsHTML = projectTitle + projectDates + projectDescription + imageHTML;
+			$(".project-entry:last").append(projectsHTML);
 		}
-		projectsHTML = projectTitle + projectDates + projectDescription + imageHTML;
-		$(".project-entry:last").append(projectsHTML);
 	}
-}
-
-projects.display();
+};
 
 var education = {
 	"schools": [
 		{
-			"name": "University of Hawaii at Mānoa",
+			"name": "University of Hawaii at Manoa",
 			"degree": "Bachelor of Arts",
 			"major": "Information and Computer Sciences",
-			"dates": "May 2010 - May 2014",
-			"location": "Honolulu, Hawai`i",
+			"dates": "May 2010 - Decenber 2013",
+			"location": "Honolulu, Hawaii",
 			"url": "http://www.hawaii.edu"
 		},
 		{
-			"name": "University of Hawaii at Mānoa",
+			"name": "University of Hawaii at Manoa",
 			"degree": "Bachelor of Arts",
-			"major": "Interdisciplinary Studies – Performing Arts",
+			"major": "Interdisciplinary Studies - Performing Arts",
 			"dates": "September 2004 - May 2007",
-			"location": "Honolulu, Hawai`i",
+			"location": "Honolulu, Hawaii",
 			"url": "http://www.hawaii.edu"
 		},
 		{
 			"name": "Full Sail University",
 			"degree": "Associate of Science, Recording Arts",
-			"dates": "September 2004 - May 2007",
+			"dates": "January 2003 - December 2003",
+			"major": "Recording Arts",
 			"location": "Winter Park, Florida",
 			"url": "http://www.fullsail.com"
 		},
 		{
-			"school": "Punahou School",
+			"name": "Punahou School",
 			"degree": "High School Diploma",
+			"major": "Liberal Arts",
 			"dates": "June 2000",
-			"location": "Honolulu, Hawai`i",
+			"location": "Honolulu, Hawaii",
 			"url": "http://www.punahou.edu"
 		}
-	]
+	],
+	displayEducation: function displayEducation() {
+		$("#education").append(HTMLschoolStart);
+		schoolHTML = "";
+		for (school in education.schools) {
+			var schoolName = HTMLschoolName.replace("%data%", education.schools[school].name);
+			var schoolDegree = HTMLschoolDegree.replace("%data%", education.schools[school].degree);
+			var schoolDates = HTMLschoolDates.replace("%data%", education.schools[school].dates);
+			var schoolLocation = HTMLschoolLocation.replace("%data%", education.schools[school].location);
+			var schoolMajor = HTMLschoolMajor.replace("%data%", education.schools[school].major);
+			schoolHTML += schoolName + schoolDegree + schoolDates + schoolLocation + schoolMajor;
+		}
+		$(".education-entry:last").append(schoolHTML);
+	}
 };
 
-if (bio.skills.length > 0) {
-	$("#header").append(HTMLskillsStart);
+var onlineClasses = {
+	"courses": [
+		{
+			"title": "Front-End Development Nanodegree",
+			"school": "Udacity",
+			"dates": "Current",
+			"url": "https://www.udacity.com/course/nd001"
+		},
+		{
+			"title": "Inferential Statistics",
+			"school": "Udacity",
+			"dates": "Current",
+			"url": "https://www.udacity.com/course/ud827"
+		},
+		{
+			"title": "Descriptive Statistics",
+			"school": "Udacity",
+			"dates": "October 2014",
+			"url": "https://www.udacity.com/course/ud827"
+		},
+		{
+			"title": "Web Application Engineering",
+			"school": "Udacity",
+			"dates": "January 2013",
+			"url": "https://www.udacity.com/course/cs253"			
+		}
+	], 
+	displayCourseware: function displayCourseware() {
+		$("#education").append(HTMLonlineClasses);
+		for (course in onlineClasses.courses) {
+			var title = HTMLonlineTitle.replace("%data%", onlineClasses.courses[course].title);
+			var school = HTMLonlineSchool.replace("%data%", onlineClasses.courses[course].school);	
+			var dates = HTMLonlineDates.replace("%data%", onlineClasses.courses[course].dates);
+			$(".courseware-entry:last").append(title + school + dates);
+		}
+	} 
+}
+
+bio.displayBio();
+work.displayWork();
+projects.displayProjects();
+education.displayEducation();
+onlineClasses.displayCourseware();
+
+$("#mapDiv").append(googleMap);
+$("#map").append(map);
+
+
+/* I Decided not to user this section. */
+/*if (bio.skills.length > 0) {
+	$("#skillsChart").append(HTMLskillsStart);
 	var formattedSkill = HTMLskills.replace("%data%", bio.skills[0]);
 	$("#skills").append(formattedSkill);
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[1]);
@@ -168,14 +255,4 @@ if (bio.skills.length > 0) {
 	$("#skills").append(formattedSkill);
 	formattedSkill = HTMLskills.replace("%data%", bio.skills[4]);
 	$("#skills").append(formattedSkill);
-};
-
-function inName(name) {
-	nameArray = name.split(" ");
-	firstName = nameArray[0][0].toUpperCase() + nameArray[0].slice(1).toLowerCase();
-	lastName = nameArray[1].toUpperCase();
-	return firstName + " " + lastName;
-};
-
-$("#mapDiv").append(googleMap);
-$(".map").append(map);
+};*/

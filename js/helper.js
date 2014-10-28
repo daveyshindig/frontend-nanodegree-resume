@@ -49,10 +49,10 @@ var HTMLschoolDates = "<div class='date-text'>%data%</div>";
 var HTMLschoolLocation = "<div class='location-text'>%data%</div>";
 var HTMLschoolMajor = "<em><br>Major: %data%</em>"
 
-var HTMLonlineClasses = "<h3>Online Classes</h3>";
+var HTMLonlineClasses = "<br><h3>Online Classes</h3><div class='courseware-entry'></div>";
 var HTMLonlineTitle = "<a href='#'>%data%";
 var HTMLonlineSchool = " - %data%</a>";
-var HTMLonlineDates = "<div class='date-text'>%data%</div>";
+var HTMLonlineDates = "<div class='date-text'>%data%</div><br>";
 var HTMLonlineURL = "<br><a href='#'>%data%</a>";
 
 var internationalizeButton = "<button>Internationalize</button>";
@@ -85,10 +85,9 @@ function logClicks(x,y) {
   console.log("x location: " + x + "; y location: " + y);
 }
 
-$(document).click(function(loc) {
+/*$(document).click(function(loc) {
   logClicks(loc.pageX, loc.pageY);
-});
-
+});*/
 
 
 /*
@@ -228,6 +227,7 @@ function initializeMap() {
   pinPoster(locations);
   
 };
+
 
 /*
 Uncomment all the code below when you're ready to implement a Google Map!
