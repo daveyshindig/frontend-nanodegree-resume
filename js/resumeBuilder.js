@@ -9,7 +9,7 @@ var bio = {
 				  "blog": "http://daveywilkie.blogspot.com"
 	},
 	"photo_url": "img/davey-1.jpg",
-	"welcomeMessage": "Aloha, my name is David Wilkie. Friends call me Davey, or Dave. I am a new graduate from the Information & Computer Sciences program at the University of Hawaii at Manoa. This month, I am finishing work at the Hawaii Natural Energy Institute, where I've been employed for the last year on a grant-funded study of the smart energy grid. Currently, I am in the online school Udacity's front-end web development nanodegree program, and I am now on the job hunt. My hope for the near future is to find gainful employment as a software or web developer while continuing to formally study more math and computer science.",
+	"welcomeMessage": "Aloha, my name is David Wilkie. Friends call me Davey, or Dave. Thank you for visiting my online résumé. I am a new graduate from the Information & Computer Sciences program at the University of Hawaii at Manoa. This month, I am finishing work at the Hawaii Natural Energy Institute, where I've been employed for the last year on a grant-funded study of the smart energy grid. Currently, I am in the online school Udacity's front-end web development nanodegree program, and I am now on the job hunt. In the near future I hope to find gainful employment as a software or web developer, while continuing to formally study more math and computer science.",
 	"skills": [
 		"yoga",
 		"Japanese",
